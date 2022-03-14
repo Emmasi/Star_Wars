@@ -1,0 +1,76 @@
+body {
+  color: white;
+  margin: 0px;
+  background-color: black;
+}
+header{
+  background-image: url("https://81f2fc6b5238972cb92a-395fccf71f85d2309bd8bf244c06b9bc.ssl.cf5.rackcdn.com/p/6be8e06d-3806-445c-ad5b-494ce38c3237.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  min-height: 35vh;
+}
+.main {
+  height: auto;
+}
+.yellow{
+  border: 1px solid yellow;
+  padding: 2vh;
+  margin: 2vh;
+}
+.selectCharachter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10vh;
+}
+label {
+  margin: 10px;
+  font-size: 20px;
+}
+select {
+  font-size: 15px;
+}
+option {
+  font-size: 17px;
+  color: black;
+}
+.nextinline {
+  display: flex;
+  justify-content: space-around;
+}
+.onTop {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+
+img {
+  max-height: 300px;
+  max-width: 300px;
+}
+
+button {
+  border: 1px white solid;
+  color: white;
+  border-radius: 18px;
+  background-color: transparent;
+  font-size: 17px;
+  font-weight: bold;
+  margin: 10px;
+  box-shadow: gray 2px 3px 3px;
+}
+p {
+  font-size: 17px;
+}
+.btn {
+  display: none;
+}
+.pictuer {
+  border: 1px solid black;
+  height: 150px;
+  width: 150px;
+  /* margin: auto; */
+}
+.anwerbox{
+  width: 40%;
+}
