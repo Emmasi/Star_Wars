@@ -6,18 +6,14 @@ let fetchdata = async (url) => {
 
 let onRender = async () => {
   let data = await fetchdata("https://swapi.dev/api/people/");
-  console.log(data.results);
 
   const selectbtn = document.querySelector("#selectChar");
-  const Pictuerplace1 = document.querySelector("#pictuer1");
-  const Pictuerplace2 = document.querySelector("#pictuer2");
   const charactername1 = document.querySelector("#charactername1");
   const charactername2 = document.querySelector("#charactername2");
   const characterinfo1 = document.querySelector("#characterinfo1");
   const characterinfo2 = document.querySelector("#characterinfo2");
-  const Yellowborder = document.querySelector("#Yellowborder")
-  const Yellowborder1=document.querySelector("#Yellowborder1")
-  const answerbox1 = document.querySelector("#answerbox1")
+  const Yellowborder = document.querySelector("#Yellowborder");
+  const Yellowborder1 = document.querySelector("#Yellowborder1");
   const massbtn = document.querySelector("#massbtn");
   const heightbtn = document.querySelector("#heightbtn");
   const hairColorbtn = document.querySelector("#hairColorbtn");
@@ -28,57 +24,63 @@ let onRender = async () => {
   const genderbtn2 = document.querySelector("#genderbtn2");
 
   const characters = data.results.map((res) => {
-
+    let findPicture = pictures.find((picture) => picture.id == res.name).bild;
+    console.log(findPicture);
     return new Character(
       res.name,
       res.gender,
       res.height,
       res.mass,
-      res.hair_color
+      res.hair_color,
+      res.findPicture
     );
   });
+  console.log(characters);
 
-  console.log(pictures[0].id)
   const getCharatersByName = (name) => characters.find((character) => character.name === name);
-  const getCharatersPicture = (name) => pictures.find((picture)=>picture.id === name);
-  // const getCharatersPictureByName= (name) => pictures2.find((picture)=>picture === name);
-  // console.log(getCharatersPictureByName())
-
-  const Createcharacter =(name,head,info) => {
+  const Createcharacter = (name, head, info, placeImg) => {
     head.innerText = name.name;
+    placeImg.innerHTML = `<img src="${name.pictureUrl}" alt="Bild">`;
     info.innerHTML = `This character from Star Wars is called ${name.name}.
     ${name.name} is a ${name.gender} character and is:
     <ul><li>${name.height}cm tall</li>
     <li>${name.mass}kg</li>
-    <li>Haircolor is ${name.hair_color} </li></ul>
+    <li>Haircolor is ${name.hair_color}</li></ul>
     ${name.name} can you tell me something about the outher character?`;
-  }
-  const allBtn = (name,btnM,btnH,btnHa,btnG) =>{
+  };
+  const allBtn = (name, btnM, btnH, btnHa, btnG) => {
     btnM.innerText = `I can tell you ${name.name} weigh`;
     btnH.innerText = `I can tell ${name.name} height`;
     btnHa.innerText = `I can tell ${name.name} haircolor`;
     btnG.innerText = `I can tell you ${name.name}s gender`;
-  }
+  };
 
   selectbtn.addEventListener("click", () => {
     const selectPer1 = document.querySelector("#per1").value;
     const selectPer2 = document.querySelector("#per2").value;
+    const Pictuerplace1 = document.querySelector("#pictuer1");
+    const Pictuerplace2 = document.querySelector("#pictuer2");
     const Character1 = getCharatersByName(selectPer1);
     const Character2 = getCharatersByName(selectPer2);
-    const Pictuer1 = getCharatersPicture(selectPer1)
-    const Pictuer2 = getCharatersPicture(selectPer2)
-    Yellowborder.classList.add("yellow")
-    Yellowborder1.classList.add("yellow")
-    Pictuerplace1.innerHTML = `<img src="${Pictuer1.bild}" alt="">`
-    Pictuerplace2.innerHTML = `<img src="${Pictuer2.bild}" alt="">`
-    const allBtnArray =[massbtn,heightbtn,hairColorbtn,genderbtn,massbtn2,hairColorbtn2,heightbtn2,genderbtn2]
-    allBtnArray.forEach((item)=>{
+    const allBtnArray = [
+      massbtn,
+      heightbtn,
+      hairColorbtn,
+      genderbtn,
+      massbtn2,
+      hairColorbtn2,
+      heightbtn2,
+      genderbtn2,
+    ];
+    allBtnArray.forEach((item) => {
       item.classList.remove("btn");
-    })
-    Createcharacter(Character1,charactername1,characterinfo1)
-    Createcharacter(Character2,charactername2,characterinfo2)
-    allBtn(Character2,massbtn,heightbtn,hairColorbtn,genderbtn)
-    allBtn(Character1,massbtn2,heightbtn2,hairColorbtn2,genderbtn2)
+    });
+    Createcharacter(Character1, charactername1, characterinfo1, Pictuerplace1);
+    Createcharacter(Character2, charactername2, characterinfo2, Pictuerplace2);
+    allBtn(Character2, massbtn, heightbtn, hairColorbtn, genderbtn);
+    allBtn(Character1, massbtn2, heightbtn2, hairColorbtn2, genderbtn2);
+    Yellowborder.classList.add("yellow");
+    Yellowborder1.classList.add("yellow");
     massbtn.addEventListener("click", () => {
       Character1.masscheck(Character2);
     });

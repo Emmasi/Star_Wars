@@ -1,7 +1,19 @@
 const answerbox1 = document.querySelector("#answerbox1");
 const answerbox2 = document.querySelector("#answerbox2");
 
-const comparemass = (per1, per2, box) => {};
+const comparemass = (per, box) => {
+
+  if (parseInt(per.mass) < parseInt(this.mass)) {
+    box.innerHTML = `I weigh more than ${per.name}`;
+    console.log(per.name, per.mass);
+  } else if (parseInt(per.mass) > parseInt(this.mass)) {
+    box.innerHTML = `${per.name} weigh more then me `;
+    console.log(per.name, per.mass);
+  } else {
+    box.innerHTML = `We weigh the same`;
+    console.log(per.name, per.mass);
+  }
+};
 
 class Character {
   constructor(name, gender, height, mass, hair_color, pictureUrl) {
@@ -10,31 +22,39 @@ class Character {
     this.height = height;
     this.mass = mass;
     this.hair_color = hair_color;
-    // this.pictureUrl=Url
+    this.findPicture=pictureUrl
+    console.log(this.findPicture)
   }
   masscheck(Person) {
-    if (parseInt(Person.mass) < parseInt(this.mass)) {
-      answerbox1.innerHTML = `I weigh more than ${Person.name}`;
-      console.log(Person.name, Person.mass);
-    } else if (parseInt(Person.mass) > parseInt(this.mass)) {
-      answerbox1.innerHTML = `${Person.name} weigh more then me `;
-      console.log(Person.name, Person.mass);
-    } else {
-      answerbox1.innerHTML = `We weigh the same`;
-      console.log(Person.name, Person.mass);
-    }
+    answerbox1.classList.add("yellow")
+    comparemass(Person,answerbox1)
   }
-  masscheck2(Person) {
-    if (parseInt(Person.mass) > parseInt(this.mass)) {
-      answerbox2.innerHTML = `${Person.name} weigh more than me`;
-      console.log(Person.name, Person.mass);
-    } else if (parseInt(Person.mass) < parseInt(this.mass)) {
-      answerbox2.innerHTML = `I weigh more then ${Person.name} `;
-      console.log(Person.name, Person.mass);
-    } else {
-      answerbox2.innerHTML = `We weigh the same`;
-      console.log(Person.name, Person.mass);
-    }
+  masscheck2(Person){
+    comparemass(Person,answerbox2)
+  }
+  //   answerbox1.classList.add("yellow")
+  //   if (parseInt(Person.mass) < parseInt(this.mass)) {
+  //     answerbox1.innerHTML = `I weigh more than ${Person.name}`;
+  //     console.log(Person.name, Person.mass);
+  //   } else if (parseInt(Person.mass) > parseInt(this.mass)) {
+  //     answerbox1.innerHTML = `${Person.name} weigh more then me `;
+  //     console.log(Person.name, Person.mass);
+  //   } else {
+  //     answerbox1.innerHTML = `We weigh the same`;
+  //     console.log(Person.name, Person.mass);
+  //   }
+  // }
+  // masscheck2(Person) {
+  //   if (parseInt(Person.mass) > parseInt(this.mass)) {
+  //     answerbox2.innerHTML = `${Person.name} weigh more than me`;
+  //     console.log(Person.name, Person.mass);
+  //   } else if (parseInt(Person.mass) < parseInt(this.mass)) {
+  //     answerbox2.innerHTML = `I weigh more then ${Person.name} `;
+  //     console.log(Person.name, Person.mass);
+  //   } else {
+  //     answerbox2.innerHTML = `We weigh the same`;
+  //     console.log(Person.name, Person.mass);
+  //   }
   }
 
   heightcheck(Person) {
