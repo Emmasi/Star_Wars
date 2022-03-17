@@ -74,3 +74,9 @@ p {
 .anwerbox{
   width: 40%;
 }
+.footbackgroud{
+  background-image: url("https://wallpaperaccess.com/full/1087224.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 600px; 
+  height: 600px;
+}

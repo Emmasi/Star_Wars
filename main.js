@@ -22,21 +22,21 @@ let onRender = async () => {
   const heightbtn2 = document.querySelector("#heightbtn2");
   const hairColorbtn2 = document.querySelector("#hairColorbtn2");
   const genderbtn2 = document.querySelector("#genderbtn2");
+  answerbox1.classList.add("btn")
+  answerbox2.classList.add("btn")
 
   const characters = data.results.map((res) => {
     let findPicture = pictures.find((picture) => picture.id == res.name).bild;
-    console.log(findPicture);
     return new Character(
       res.name,
       res.gender,
       res.height,
       res.mass,
       res.hair_color,
-      res.findPicture
+      findPicture,
     );
   });
   console.log(characters);
-
   const getCharatersByName = (name) => characters.find((character) => character.name === name);
   const Createcharacter = (name, head, info, placeImg) => {
     head.innerText = name.name;
@@ -75,6 +75,8 @@ let onRender = async () => {
     allBtnArray.forEach((item) => {
       item.classList.remove("btn");
     });
+    answerbox1.classList.add("btn")
+    answerbox2.classList.add("btn")
     Createcharacter(Character1, charactername1, characterinfo1, Pictuerplace1);
     Createcharacter(Character2, charactername2, characterinfo2, Pictuerplace2);
     allBtn(Character2, massbtn, heightbtn, hairColorbtn, genderbtn);

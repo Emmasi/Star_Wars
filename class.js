@@ -1,20 +1,6 @@
 const answerbox1 = document.querySelector("#answerbox1");
 const answerbox2 = document.querySelector("#answerbox2");
 
-const comparemass = (per, box) => {
-
-  if (parseInt(per.mass) < parseInt(this.mass)) {
-    box.innerHTML = `I weigh more than ${per.name}`;
-    console.log(per.name, per.mass);
-  } else if (parseInt(per.mass) > parseInt(this.mass)) {
-    box.innerHTML = `${per.name} weigh more then me `;
-    console.log(per.name, per.mass);
-  } else {
-    box.innerHTML = `We weigh the same`;
-    console.log(per.name, per.mass);
-  }
-};
-
 class Character {
   constructor(name, gender, height, mass, hair_color, pictureUrl) {
     this.name = name;
@@ -22,42 +8,36 @@ class Character {
     this.height = height;
     this.mass = mass;
     this.hair_color = hair_color;
-    this.findPicture=pictureUrl
-    console.log(this.findPicture)
+    this.pictureUrl=pictureUrl
   }
   masscheck(Person) {
-    answerbox1.classList.add("yellow")
-    comparemass(Person,answerbox1)
+    answerbox1.classList.remove("btn")
+    if (parseInt(Person.mass) < parseInt(this.mass)) {
+      answerbox1.innerHTML = `I weigh more than ${Person.name}`;
+      console.log(Person.name, Person.mass);
+    } else if (parseInt(Person.mass) > parseInt(this.mass)) {
+      answerbox1.innerHTML = `${Person.name} weigh more then me `;
+      console.log(Person.name, Person.mass);
+    } else {
+      answerbox1.innerHTML = `We weigh the same`;
+      console.log(Person.name, Person.mass);
+    }
   }
-  masscheck2(Person){
-    comparemass(Person,answerbox2)
+  masscheck2(Person) {
+    answerbox2.classList.remove("btn")
+    if (parseInt(Person.mass) > parseInt(this.mass)) {
+      answerbox2.innerHTML = `${Person.name} weigh more than me`;
+      console.log(Person.name, Person.mass);
+    } else if (parseInt(Person.mass) < parseInt(this.mass)) {
+      answerbox2.innerHTML = `I weigh more then ${Person.name} `;
+      console.log(Person.name, Person.mass);
+    } else {
+      answerbox2.innerHTML = `We weigh the same`;
+      console.log(Person.name, Person.mass);
+    }
   }
-  //   answerbox1.classList.add("yellow")
-  //   if (parseInt(Person.mass) < parseInt(this.mass)) {
-  //     answerbox1.innerHTML = `I weigh more than ${Person.name}`;
-  //     console.log(Person.name, Person.mass);
-  //   } else if (parseInt(Person.mass) > parseInt(this.mass)) {
-  //     answerbox1.innerHTML = `${Person.name} weigh more then me `;
-  //     console.log(Person.name, Person.mass);
-  //   } else {
-  //     answerbox1.innerHTML = `We weigh the same`;
-  //     console.log(Person.name, Person.mass);
-  //   }
-  // }
-  // masscheck2(Person) {
-  //   if (parseInt(Person.mass) > parseInt(this.mass)) {
-  //     answerbox2.innerHTML = `${Person.name} weigh more than me`;
-  //     console.log(Person.name, Person.mass);
-  //   } else if (parseInt(Person.mass) < parseInt(this.mass)) {
-  //     answerbox2.innerHTML = `I weigh more then ${Person.name} `;
-  //     console.log(Person.name, Person.mass);
-  //   } else {
-  //     answerbox2.innerHTML = `We weigh the same`;
-  //     console.log(Person.name, Person.mass);
-  //   }
-  }
-
   heightcheck(Person) {
+    answerbox1.classList.remove("btn")
     if (parseInt(Person.height) > parseInt(this.height)) {
       answerbox1.innerHTML = `${Person.name} is taller than me`;
       console.log(Person.name, Person.height);
@@ -70,6 +50,7 @@ class Character {
     }
   }
   heightcheck2(Person) {
+    answerbox2.classList.remove("btn")
     if (parseInt(Person.height) > parseInt(this.height)) {
       answerbox2.innerHTML = `${Person.name} is taller than me`;
       console.log(Person.name, Person.height);
@@ -83,30 +64,27 @@ class Character {
   }
 
   haircheck(Person) {
+    answerbox1.classList.remove("btn")
     if (Person.hair_color == this.hairColor) {
       answerbox1.innerHTML = `${Person.name}s haircoler is the same as my`;
       console.log(Person.name, Person.hair_color);
-    } else if (Person.hairColor != this.hairColor) {
+    } else{
       answerbox1.innerHTML = `${Person.name} haircoler is ${Person.hair_color} and thats not the same as my`;
-      console.log(Person.name, Person.hair_color);
-    } else {
-      answerbox1.innerHTML = `One of os dont even have hair`;
       console.log(Person.name, Person.hair_color);
     }
   }
   haircheck2(Person) {
-    if (Person.hair_color > this.hairColor) {
-      answerbox2.innerHTML = `${Person.name}s haircoller is ${Person.hairColor}`;
+    answerbox2.classList.remove("btn")
+    if (Person.hair_color == this.hairColor) {
+      answerbox1.innerHTML = `${Person.name}s haircoler is the same as my`;
       console.log(Person.name, Person.hair_color);
-    } else if (Person.hairColor < this.hairColor) {
-      answerbox2.innerHTML = `${Person.name} is younger than me`;
-      console.log(Person.name, Person.hair_color);
-    } else {
-      answerbox2.innerHTML = `We dont have the same hair`;
+    } else{
+      answerbox1.innerHTML = `${Person.name} haircoler is ${Person.hair_color} and thats not the same as my`;
       console.log(Person.name, Person.hair_color);
     }
   }
   gendercheck(Person) {
+    answerbox1.classList.remove("btn")
     if (Person.gender === this.gender) {
       answerbox1.innerHTML = `${Person.name} and me go to the same toilet queue`;
       console.log(Person.name, Person.gender);
@@ -119,6 +97,7 @@ class Character {
     }
   }
   gendercheck2(Person) {
+    answerbox2.classList.remove("btn")
     if (Person.gender === this.gender) {
       answerbox2.innerHTML = `${Person.name} and me go to the same toilet queue`;
       console.log(Person.name, Person.gender);
