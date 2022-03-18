@@ -1,17 +1,19 @@
-let fetchdata = async (url) => {
-  let response = await fetch(url);
-  let json = await response.json();
+const fetchdata = async (url) => {
+  const response = await fetch(url);
+  const json = await response.json();
   return json;
 };
 
-let onRender = async () => {
-  let data = await fetchdata("https://swapi.dev/api/people/");
+const onRender = async () => {
+  const data = await fetchdata("https://swapi.dev/api/people/");
 
   const selectbtn = document.querySelector("#selectChar");
   const charactername1 = document.querySelector("#charactername1");
   const charactername2 = document.querySelector("#charactername2");
   const characterinfo1 = document.querySelector("#characterinfo1");
   const characterinfo2 = document.querySelector("#characterinfo2");
+  const answerbox1 = document.querySelector("#answerbox1");
+  const answerbox2 = document.querySelector("#answerbox2");
   const Yellowborder = document.querySelector("#Yellowborder");
   const Yellowborder1 = document.querySelector("#Yellowborder1");
   const massbtn = document.querySelector("#massbtn");
@@ -22,23 +24,23 @@ let onRender = async () => {
   const heightbtn2 = document.querySelector("#heightbtn2");
   const hairColorbtn2 = document.querySelector("#hairColorbtn2");
   const genderbtn2 = document.querySelector("#genderbtn2");
-  answerbox1.classList.add("btn")
-  answerbox2.classList.add("btn")
+  answerbox1.classList.add("btn");
+  answerbox2.classList.add("btn");
 
   const characters = data.results.map((res) => {
-    let findPicture = pictures.find((picture) => picture.id == res.name).bild;
+    const findPicture = pictures.find((picture) => picture.id == res.name).bild;
     return new Character(
       res.name,
       res.gender,
       res.height,
       res.mass,
       res.hair_color,
-      findPicture,
+      findPicture
     );
   });
-  console.log(characters);
-  const getCharatersByName = (name) => characters.find((character) => character.name === name);
-  const Createcharacter = (name, head, info, placeImg) => {
+  const getCharatersByName = (name) =>
+    characters.find((character) => character.name === name);
+  const createcharacter = (name, head, info, placeImg) => {
     head.innerText = name.name;
     placeImg.innerHTML = `<img src="${name.pictureUrl}" alt="Bild">`;
     info.innerHTML = `This character from Star Wars is called ${name.name}.
@@ -75,37 +77,37 @@ let onRender = async () => {
     allBtnArray.forEach((item) => {
       item.classList.remove("btn");
     });
-    answerbox1.classList.add("btn")
-    answerbox2.classList.add("btn")
-    Createcharacter(Character1, charactername1, characterinfo1, Pictuerplace1);
-    Createcharacter(Character2, charactername2, characterinfo2, Pictuerplace2);
+    answerbox1.classList.add("btn");
+    answerbox2.classList.add("btn");
+    createcharacter(Character1, charactername1, characterinfo1, Pictuerplace1);
+    createcharacter(Character2, charactername2, characterinfo2, Pictuerplace2);
     allBtn(Character2, massbtn, heightbtn, hairColorbtn, genderbtn);
     allBtn(Character1, massbtn2, heightbtn2, hairColorbtn2, genderbtn2);
     Yellowborder.classList.add("yellow");
     Yellowborder1.classList.add("yellow");
     massbtn.addEventListener("click", () => {
-      Character1.masscheck(Character2);
+      Character1.masscheck(Character2, answerbox1);
     });
     heightbtn.addEventListener("click", () => {
-      Character1.heightcheck(Character2);
+      Character1.heightcheck(Character2, answerbox1);
     });
     hairColorbtn.addEventListener("click", () => {
-      Character1.haircheck(Character2);
+      Character1.haircheck(Character2, answerbox1);
     });
     genderbtn.addEventListener("click", () => {
-      Character1.gendercheck(Character2);
+      Character1.gendercheck(Character2, answerbox1);
     });
     massbtn2.addEventListener("click", () => {
-      Character2.masscheck2(Character1);
+      Character2.masscheck(Character1, answerbox2);
     });
     heightbtn2.addEventListener("click", () => {
-      Character2.heightcheck2(Character1);
+      Character2.heightcheck(Character1, answerbox2);
     });
     hairColorbtn2.addEventListener("click", () => {
-      Character2.haircheck2(Character1);
+      Character2.haircheck(Character1, answerbox2);
     });
     genderbtn2.addEventListener("click", () => {
-      Character2.gendercheck2(Character1);
+      Character2.gendercheck(Character1, answerbox2);
     });
   });
 };
