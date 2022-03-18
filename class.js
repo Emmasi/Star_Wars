@@ -10,9 +10,10 @@ class Character {
   masscheck(Person, answerbox) {
     answerbox.classList.remove("btn");
     if (parseInt(Person.mass) < parseInt(this.mass)) {
-      answerbox.innerHTML = `I weigh more than ${Person.name}`;
+      answerbox.innerHTML = `I weigh ${this.mass - Person.mass}kg more than ${Person.name}`;
+      console.log(this.mass - Person.mass);
     } else if (parseInt(Person.mass) > parseInt(this.mass)) {
-      answerbox.innerHTML = `${Person.name} weigh more then me `;
+      answerbox.innerHTML = `${Person.name} weigh ${Person.mass - this.mass}kg more then me `;
     } else {
       answerbox.innerHTML = `We weigh the same`;
     }
@@ -20,9 +21,9 @@ class Character {
   heightcheck(Person,answerbox) {
     answerbox.classList.remove("btn");
     if (parseInt(Person.height) > parseInt(this.height)) {
-      answerbox.innerHTML = `${Person.name} is taller than me`;
+      answerbox.innerHTML = `${Person.name} is ${Person.height - this.height}cm taller than me`;
     } else if (parseInt(Person.height) < parseInt(this.height)) {
-      answerbox.innerHTML = `I am taller then ${Person.name}`;
+      answerbox.innerHTML = `I am ${this.height - Person.height}cm taller then ${Person.name}`;
     } else {
       characterinfo2.innerHTML = `${Person.name} has the same height as ${this.name}`;
     }
